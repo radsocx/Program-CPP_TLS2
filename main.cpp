@@ -19,8 +19,7 @@ int main () {
                 (bmi < 24.9) ? "Normal" :
                 (bmi < 29.9) ? "Overweight" : "Obese";
 
-    cout << "BMI anda adalah " << bmi << " (" << bmiCat << ")" << endl;
-
+    cout << endl << "BMI anda adalah " << bmi << " (" << bmiCat << ")" << endl << endl;
 
     bool isMale; char sexInd; //input jenis kelamin
     while (true) {
@@ -44,7 +43,7 @@ int main () {
     } else {
         bmr = 447.593 + (9.247*weight) + (3.098*heightcm) - (4.330*age);
     }
-    cout << "BMR anda adalah " << bmr << " kcal/hari." << endl;
+    cout << endl << "BMR anda adalah " << bmr << " kcal/hari." << endl << endl;
 
     float tdee;
     int activityLevel; //determinator tingkat aktivitas 1-5
@@ -60,7 +59,7 @@ int main () {
             (activityLevel == 3) ? (bmr*1.5) :
             (activityLevel == 4) ? (bmr*1.7) : (bmr*2); //hitung tdee berdasarkan tingkat aktivitas
     
-    cout << "TDEE anda adalah " << tdee << " kcal/hari." << endl;
+    cout << endl << "TDEE anda adalah " << tdee << " kcal/hari." << endl;
 
     cout << "Press any key to exit...";
     cin.ignore();  // Clear any leftover input

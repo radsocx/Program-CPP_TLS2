@@ -1,6 +1,6 @@
-PWD c:\Users\ibuku\Documents\Codes\TLS2024\Laporan
+PWD d:\Projects\TLS2024\Laporan
 INPUT C:\Users\ibuku\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\ibuku\Documents\Codes\TLS2024\Laporan\laporan.tex
+INPUT d:\Projects\TLS2024\Laporan\laporan.tex
 OUTPUT laporan.log
 INPUT C:\Users\ibuku\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\ibuku\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls

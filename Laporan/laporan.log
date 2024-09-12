@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.11)  12 SEP 2024 07:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.11)  12 SEP 2024 17:32
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**c:/Users/ibuku/Documents/Codes/TLS2024/Laporan/laporan.tex
-(c:/Users/ibuku/Documents/Codes/TLS2024/Laporan/laporan.tex
+**d:/Projects/TLS2024/Laporan/laporan.tex
+(d:/Projects/TLS2024/Laporan/laporan.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (C:\Users\ibuku\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -109,12 +109,12 @@ L3 programming layer <2024-01-04>
  ) 
 Here is how much of TeX's memory you used:
  1026 strings out of 474486
- 18044 string characters out of 5743755
+ 17911 string characters out of 5743755
  1924542 words of memory out of 5000000
  23376 multiletter control sequences out of 15000+600000
  558069 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,1n,65p,255b,37s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 57i,1n,65p,236b,37s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 No pages of output.
 PDF statistics:
