@@ -1,6 +1,221 @@
 \documentclass{article}
-\usepackage[a4paper, portrait, left=2cm, right=2cm, bottom=2cm, top=3cm]{geometry}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=3cm,left=2cm,right=2cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{lmodern}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{natbib}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+\lstset{style=mystyle}
+
 \begin{document}
-    \title{Laporan Tugas Pemrograman TLS 2024}
-    \author{Rayya Tegar Amisani}
+\title{%
+   Tugas Pemrograman TLS: \\
+  Kalkulator BMI, BMR dan TDEE}
+  \author{Rayya Tegar Amisani}
+\maketitle
+
+\section{Ikhtisar}
+Program ini merupakan prorgam yang menghitung BMI (\textit{Body Mass Index}), BMR (\textit{Base Metabolic Rate}) dan TDEE (\textit{Total Daily Energy Expenditure}). Dibuat menggunakan bahasa pemrograman c++, program ini memiliki antarmuka yang cukup minimal, yaitu menggunakan terminal sebagai antarmuka input-output data.
+\subsection{BMI}
+BMI atau \textit{Body Mass Index} merupakan ukuran yang digunakan untuk menetukan proporsionalitas berat badan dengan tinggi badan seseorang.
+\subsection{BMR}
+BMR atau \textit{Base Metabolic Rate} merupakan jumlah kalori yang dibakar tubuh saat istirahat lengkap, tanpa aktivitas fisik. BMR menunjukkan kebutuhan energi tubuh untuk menjaga fungsi dasar seperti pernapasan dan sirkulasi darah. 
+\subsection{TDEE}
+TDEE atau \textit{Total Daily Energu Expenditure} merupakan jumlah total kalori yang dibutuhkan tubuh dalam sehari, termasuk kalori yang dibakar melalui aktivitas fisik. 
+\section{Kode}
+
+\subsection{Library}
+\begin{lstlisting}[language=c++]
+#include <iostream>
+#include <numbers>
+#include <string>
+
+using namespace std;
+\end{lstlisting}
+Program ini menggunakan tiga library, yaitu: 1) iostream sebagai library input-output dasar, 2) numbers sebagai library operasi angka, dan 3) string sebagai library operasi string. namespace std digunakan untuk dapat menggunakan objek dan variabel dari library standard.
+
+\subsection{Kalkulator BMI}
+\begin{lstlisting}[language=c++]
+int main () {
+    cout << "Kalkulator BMI, BMR dan TDEE" << endl;
+    cout << "Masukkan berat badan anda (kg): ";
+    int weight; cin >> weight;
+    cout << "Masukkan tinggi badan anda (cm): ";
+    float height; cin >> height; float heightcm = height/100;
+
+    float bmi; //hitung BMI
+    bmi = weight/(heightcm*heightcm);
+
+    string bmiCat; //string kategori BMI berdasarkan indikator
+    bmiCat =    (bmi < 18.5) ? "Underweight" :
+                (bmi < 24.9) ? "Normal" :
+                (bmi < 29.9) ? "Overweight" : "Obese";
+
+    cout << endl << "BMI anda adalah " << bmi << " (" << bmiCat << ")" << endl << endl;
+\end{lstlisting}
+Pada bagian ini, ditampilkan teks nama program "Kalkulator BMI, BMR dan TDEE." Kemudian program pertama yang dimulai adalah kalkulator BMI, dimana pengguna diminta memasukkan berat badan dan tinggi badannya, kemudian program menghitung BMI dengan persamaan \(BMI=\frac{berat\space badan (kg)}{tinggi\space badan*tinggi\space badan(m)}\). Kemudian program menentukan kategori BMI dengan ketentuan: 
+\begin{table}[]
+    \centering
+    \begin{tabular}{|c|c|} \hline 
+         BMI&  Kategori\\ \hline 
+           \(<18.5\)& 
+    Underweight\\ \hline 
+ \(<24.9\)&Normal\\ \hline 
+ \(<29.9\)&Overweight\\ \hline 
+ \(>24.9\)&Obese\\ \hline\end{tabular}
+\caption{Indikator BMI}
+\end{table}
+Kemudian program akan mengeluarkan output nama program dan hasil BMI.
+\begin{lstlisting}[language=bash]
+Kalkulator BMI, BMR dan TDEE
+Masukkan berat badan anda (kg): 55
+Masukkan tinggi badan anda (cm): 170
+
+BMI anda adalah 19.0311 (Normal)
+    
+\end{lstlisting}
+\subsection{Kalkulator BMR}
+\begin{lstlisting}[language=c++]
+    bool isMale; char sexInd; //input jenis kelamin
+    while (true) {
+        cout << "Masukkan jenis kelamin anda [m/f]: ";
+        cin >> sexInd;
+
+        if (sexInd == 'm' || sexInd == 'M') {
+            isMale = true; break; // break loop jika valid laki-laki
+        } else if (sexInd == 'f' || sexInd == 'F') {
+            isMale = false; break; // break loop jika valid perempuan
+        } else {
+            cout << "Jenis kelamin tidak valid. Masukkan M untuk laki-laki dan F untuk perempuan" << endl;
+            } //kembali ke input jenis kelamin
+        }
+    
+    int age;
+    cout << "Masukkan usia anda: "; cin >> age; //input usia
+    float bmr;
+    if (isMale) { //hitung BMR berdasarkan jenis kelamin
+        bmr = 88.362 + (13.397*weight) + (4.799*heightcm) - (5.677*age);
+    } else {
+        bmr = 447.593 + (9.247*weight) + (3.098*heightcm) - (4.330*age);
+    }
+    cout << endl << "BMR anda adalah " << bmr << " kcal/hari." << endl << endl;
+    
+\end{lstlisting}
+Pada bagian ini, program menghitung BMR pengguna. Perhitungan dimulai dengan meminta input jenis kelamin pengguna. Hal ini dilakukan menggunakan loop, dimana jika pengguna memasukkan input jenis kelamin selain M atau F, program akan mengulangi input jenis kelamin sambil menunjukkan error. Kemudian, program akan mengkonversi input M/F menjadi boolean isMale yang akan digunakan untuk menghitung BMR.
+
+Setelah diterima data jenis kelamin, program akan meminta input usia pengguna. Setelah diterima usia, program akan menghitung BMR dengan persamaan sebagai berikut:
+\begin{align}
+BMR_{\text{Laki-laki}} &= 88.362 + (13.397 \times \text{berat badan}) + (4.799 \times \text{tinggi badan (cm)}) - (5.677 \times \text{usia}) \\
+BMR_{\text{Perempuan}} &= 447.593 + (9.274 \times \text{berat badan}) + (3.098 \times \text{tinggi badan (cm)}) - (4.330 \times \text{usia})
+\end{align}
+
+Maka setelah BMR dihitung, program akan mengeluarkan output BMR dengan satuan kcal/hari.
+\begin{lstlisting}[language=bash]
+Masukkan jenis kelamin anda [m/f]: m
+Masukkan usia anda: 18
+
+BMR anda adalah 731.169 kcal/hari.
+\end{lstlisting}
+\subsection{Kalkulator TDEE}
+\begin{lstlisting}[language=c++]
+    float tdee;
+    int activityLevel; //determinator tingkat aktivitas 1-5
+    cout << "Masukkan tingkat aktivitas anda." << endl;
+    cout << "1 untuk sedentary (tidak olahraga/olahraga sedikit)" << endl <<
+    "2 untuk lightly active (olahraga 1-2 kali seminggu)" << endl << "3 untuk moderately active (olahraga 3-5 kali seminggu)" << endl
+    << "4 untuk heavily active (olahraga 6-7 kali seminggu)" << endl << "5 untuk atlet (olahraga 2 kali sehari)" << endl;
+
+    cin >> activityLevel;
+
+    tdee =  (activityLevel == 1) ? (bmr*1.2) :
+            (activityLevel == 2) ? (bmr*1.3) :
+            (activityLevel == 3) ? (bmr*1.5) :
+            (activityLevel == 4) ? (bmr*1.7) : (bmr*2); //hitung tdee berdasarkan tingkat aktivitas
+    
+    cout << endl << "TDEE anda adalah " << tdee << " kcal/hari." << endl;
+
+    cout << "Press any key to exit...";
+    cin.ignore();  // Clear any leftover input
+    cin.get();  // Wait for the user to press a key
+
+    return 0;
+}
+\end{lstlisting}
+Pada bagian ini, program menghitung TDEE pengguna. Penghitungan dimulai dengan meminta input tingkat aktivitas pengguna, kemudian mengalikan hasil BMR dengan konstanta pengali berdasarkan tingkat aktivitas pengguna.
+\begin{table}[]
+    \centering
+    \begin{tabular}{|c|c|c|c|} \hline 
+          No&Kategori &Frekuensi Olahraga&  Pengali\\ \hline 
+          1& Sedentary&tidak/sedikit olahraga& 
+     1.2\\ \hline
+ 2&  Lightly Active&1-2 kali/minggu&1.3\\\hline
+ 3&  Moderately Active&3-5 kali/minggu&1.5\\\hline
+ 4&  Heavily Active&6-7 kali/minggu&1.7\\\hline
+ 5&  Athlete&2 kali/hari&2.0\\\hline\end{tabular}
+    \caption{TIngkat Aktivitas Olahraga}
+    \label{tab:my_label}
+\end{table}
+Operasi hitungan dilakukan menggunakan ternary or conditional operator ( ? : ), dengan penggunaan \verb|(condition) ? return1 : return2| , dimana bila condition bernilai benar, maka akan dilakukan return1. Bila condition bernilai salah, maka akan dilakukan return2. Dalam hal ini, return2 ditumpuk menggunakan tenary or lainnya sehingga membentuk suatu sekuensi kondisi berdasarkan kategori tingkat aktivitas pengguna.
+
+Maka setelah TDEE dihitung, program akan mengeluarkan output TDEE dengan satuan kcal/hari. Dan teks "Press any key to exit..." untuk mencegah program tutup otomatis setelah input terakhir dimasukkan.
+\begin{lstlisting}[language=c++]
+Masukkan tingkat aktivitas anda.
+1 untuk sedentary (tidak olahraga/olahraga sedikit)
+2 untuk lightly active (olahraga 1-2 kali seminggu)
+3 untuk moderately active (olahraga 3-5 kali seminggu)
+4 untuk heavily active (olahraga 6-7 kali seminggu)
+5 untuk atlet (olahraga 2 kali sehari)
+2
+
+TDEE anda adalah 950.52 kcal/hari.
+Press any key to exit...
+\end{lstlisting}
+\begin{thebibliography}{9}
+
+\bibitem{w3schools_2019_c}
+W3Schools. \textit{C++ Tutorial}. 2019. Available at: \url{https://www.w3schools.com/cpp/}. Accessed: 2024-09-12.
+
+\bibitem{cdc_2019_cdc}
+CDC. \textit{CDC - Calculating BMI using the metric system - BMI for Age Training Course - DNPAO}. January 2019. Available at: \url{https://www.cdc.gov/nccdphp/dnpao/growthcharts/training/bmiage/page5_1.html}. Accessed: 2024-09-12.
+
+\bibitem{read_2021_tdee}
+Tyler Read. \textit{TDEE Calculator - Calculate Calories Burned in a Day}. September 2021. Available at: \url{https://www.ptpioneer.com/total-daily-energy-expenditure-calculator-tdee-calculator/}. Accessed: 2024-09-12.
+
+\end{thebibliography}
+
 \end{document}
